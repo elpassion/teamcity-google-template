@@ -36,14 +36,12 @@ To do it, use the following command:
 
 ## Deployment
 
-### Quick Start 
-
-The easiest and **not secure** way to create test TeamCity deployment is to execute the following command:
+### Quick Deployment
 
 ```sh
 > gcloud deployment-manager deployments create <deploymentName> \
-  --template https://raw.githubusercontent.com/JetBrains/teamcity-google-template/master/teamcity.jinja \
-  --properties zone:<zone>
+  --template https://raw.githubusercontent.com/elpassion/teamcity-google-template/master/teamcity.jinja \
+  --properties zone:<zone>,version:\'<versionName>\',installationSize:small
 ```
 
 Where `<deploymentName>` should be unique name for deployment, e.g. "teamcity" and `<zone>` is set to one of the [zones](https://cloud.google.com/compute/docs/regions-zones/). To list available zones execute the following command:
@@ -63,7 +61,7 @@ To create a production ready TeamCity deployment you need to have a domain name 
 
 ```sh
 > gcloud deployment-manager deployments create <deploymentName> \
-  --template https://raw.githubusercontent.com/JetBrains/teamcity-google-template/master/teamcity.jinja \
+  --template https://raw.githubusercontent.com/elpassion/teamcity-google-template/master/teamcity.jinja \
   --properties zone:<zone>,ipAddress:<ipAddress>,domainName:<domainName>,domainOwnerEmail:<domainOwnerEmail>
 ```
 
@@ -106,7 +104,7 @@ To change the TeamCity version, start the deployment script with the required ve
  
 ```sh
 > gcloud deployment-manager deployments update teamcity \
-  --template https://raw.githubusercontent.com/JetBrains/teamcity-google-template/master/teamcity.jinja \
+  --template https://raw.githubusercontent.com/elpassion/teamcity-google-template/master/teamcity.jinja \
   --properties zone:<zone>,version:<version>
 ```
 
